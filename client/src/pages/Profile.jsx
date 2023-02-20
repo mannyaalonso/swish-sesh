@@ -2,9 +2,9 @@ import axios from 'axios'
 import { useEffect, useState, } from 'react'
 
 const Profile = () => {
-  const [runs, setRuns] = useState([])
-
   const [user, setUser] = useState([])
+  const [updateExp, setUpdateExp] = useState({})
+
   const getUser = async (e) => {
     try {
       const res = await axios.get(`/api/user/63f3d9d269dd3b32ef27e0f3`)
@@ -18,6 +18,13 @@ const Profile = () => {
   useEffect(() => {
     getUser()
   }, [])
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   const updateExp
+  // }
+
+  // const handleChange
 
   return (
 
@@ -112,7 +119,7 @@ const Profile = () => {
                   htmlFor="pastRun"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Run: {user.pastRuns}
+                  Past Runs: {user.pastRuns}
                 </label>
                 <div className="mt-1">
                 </div>
