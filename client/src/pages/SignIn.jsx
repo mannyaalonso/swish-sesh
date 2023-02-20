@@ -6,30 +6,32 @@ import axios from "axios"
 const SignIn = () => {
   const [user, setUser] = useState({})
 
-  // const createUser = async (userObject) => {
-  //   try {
-  //     const res = await axios.post(`/api/users`, {
-  //       name: userObject.name,
-  //       email: userObject.email,
-  //       picture: userObject.picture,
-  //       isLoggedIn: true,
-  //     })
-  //     setUser(res.data.user)
-  //   } catch (err) {
-  //     if (err.response.status === 500) {
-  //       try {
-  //         let email = { email: userObject.email }
-  //         let res = await axios.post("/api/login", email)
-  //         if (res.data.message === "Login successful") setUser(res.data.user)
-  //       } catch (e) {}
-  //     }
-  //   }
-  // }
+  const createUser = async (userObject) => {
+    try {
+      const res = await axios.post(`/api/user`, {
+        name: userObject.name,
+        email: userObject.email,
+        picture: userObject.picture,
+        experience: "",
+        hasPayment: false
+      })
+      setUser(res.data.user)
+    } catch (err) {
+      if (err.response.status === 500) {
+        try {
+          let email = { email: userObject.email }
+          let res = await axios.post("/api/login", email)
+          if (res.data.message === "Login successful") setUser(res.data.user)
+        } catch (e) {}
+      }
+    }
+  }
+
+  console.log(user)
 
   const handleCallBackResponse = async (response) => {
     let userObject = jwt_decode(response.credential)
-    console.log(userObject)
-    //createUser(userObject)
+    createUser(userObject)
   }
 
   useEffect(() => {
