@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom"
 import Confirmation from "./pages/Confirmation"
 import Registration from "./pages/Registration"
@@ -7,6 +6,7 @@ import SignIn from "./pages/SignIn"
 import Home from "./pages/Home"
 import Faq from "./pages/Faq"
 import Nav from "./components/Nav"
+import Payment from "./pages/Payment"
 
 function App() {
   return (
