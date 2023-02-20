@@ -8,12 +8,12 @@ const SignIn = () => {
 
   const createUser = async (userObject) => {
     try {
-      const res = await axios.post(`/api/user`, {
+      const res = await axios.post(`http://localhost:3001/api/user`, {
         name: userObject.name,
         email: userObject.email,
         picture: userObject.picture,
         experience: "",
-        hasPayment: false
+        hasPayment: false,
       })
       setUser(res.data.user)
     } catch (err) {
