@@ -81,17 +81,18 @@ const Footer = () => {
         <div className="mt-8 md:order-1 md:mt-0">
           <p className="text-center text-xs leading-5 text-gray-500">
             &copy; 2023 Swish Sesh, Inc. All rights reserved.
-          </p>
+            <br></br>
           {navigation.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="inline-block text-gray-400 hover:text-gray-500 mr-8 mt-4"
+              className="inline-block text-gray-400 hover:text-gray-500 m-5"
             >
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
             </a>
           ))}
+          </p>
         </div>
       </div>
     </footer>

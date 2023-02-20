@@ -1,3 +1,4 @@
+import { FaBasketballBall } from "react-icons/fa"
 
 const nav = () => {
   const navigation = [
@@ -12,9 +13,10 @@ const nav = () => {
       <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
           <div className="flex items-center">
-            <a href="#">
-              <span className="sr-only">Your Company</span>
-              <img className="h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="" />
+            <a href="/">
+              <span className="sr-only">SwishSesh</span>
+              <FaBasketballBall className="mx-auto h-12 w-auto text-slate-100" />
+              {/* <img className="h-10 w-auto" src="https://i.imgur.com/YrHjqIw.png" alt="" /> */}
             </a>
             <div className="ml-10 hidden space-x-8 lg:block">
               {navigation.map((link) => (
