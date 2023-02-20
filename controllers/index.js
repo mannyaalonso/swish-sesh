@@ -55,8 +55,6 @@ const deleteUser = async (req, res) => {
     }
 }
 
-
-
 const createRun = async (req, res) => {
     try {
         const { id } = req.params
@@ -75,6 +73,15 @@ const getAllRuns = async (req, res) => {
     try {
         const { id } = req.params
         const runs = await Run.find({ players: id })
+        return res.status(200).json({runs})
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const getRuns = async (req, res) => {
+    try {
+        const runs = await Run.find()
         return res.status(200).json(runs)
     } catch (error) {
         return res.status(500).send(error.message);
@@ -115,17 +122,6 @@ const deleteRun = async (req, res) => {
     }
 }
 
-const loginUser = async (req, res) => {
-  const { email } = req.body
-  User.findOne({ email }, (error, user) => {
-    if (!user) {
-      return res.status(401).json({ message: "Email not found" })
-    } else {
-      res.status(200).json({ message: "Login successful", user: user })
-    }
-  })
-}
-
 module.exports = {
     createUser,
     getAllUsers,
@@ -137,5 +133,5 @@ module.exports = {
     getRunById,
     updateRun,
     deleteRun,
-    loginUser
+    getRuns
 }
