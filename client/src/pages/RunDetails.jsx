@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const RunDetails = () => {
+const RunDetails = ({ user }) => {
 
     const [selectedRun, setSelectedRun] = useState({})
 

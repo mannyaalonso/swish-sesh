@@ -1,11 +1,7 @@
 
 
-const Registration = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+const Registration = ({ user }) => {
+  return <div></div>
 }
 
 export default Registration

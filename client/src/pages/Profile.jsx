@@ -1,49 +1,50 @@
 import axios from 'axios'
 import { useEffect, useState, } from 'react'
 
-const Profile = () => {
-  const [user, setUser] = useState([])
-  const [updateExp, setUpdateExp] = useState({ experience: `${user.experience}` })
+const Profile = ({ user }) => {
+  //const [user, setUser] = useState(user)
+  const [updateExp, setUpdateExp] = useState({
+    experience: `${user.experience}`,
+  })
 
   console.log(user.experience)
 
-  const getUser = async (e) => {
-    try {
-      const res = await axios.get(`/api/user/63f3f2c0f1105e076a869468`)
-      setUser(res.data.user)
-      // setUser(res)
-      // console.log(res)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // const getUser = async (e) => {
+  //   try {
+  //     const res = await axios.get(`/api/user/${user._id}`)
+  //     // setUser(res.data.user)
+  //     setUser(res)
+  //     // console.log(res)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   useEffect(() => {
-    getUser()
+    //getUser()
   }, [])
 
   const handleSubmit = async (e) => {
     // console.log(e)
     e.preventDefault()
     const updateExpPackage = {
-      experience: updateExp.experience
+      experience: updateExp.experience,
     }
-    const response = await axios.put(`/api/user/63f3f2c0f1105e076a869468`, updateExpPackage)
+    const response = await axios.put(`/api/user/63f3d9d269dd3b32ef27e0f3`, updateExpPackage)
     console.log(updateExp)
   }
 
   const handleChange = (e) => {
     // e.preventDefault()
     setUpdateExp({
-      // ...updateExp, 
-      [e.target.name]: e.target.value
+      // ...updateExp,
+      [e.target.name]: e.target.value,
     })
     // console.log(e.target.name)
     // console.log(e.target.value)
   }
 
   return (
-
     <div className="p-20">
       <form className="space-y-8 divide-y divide-gray-200">
         <div className="space-y-8 divide-y divide-gray-200">
@@ -97,7 +98,6 @@ const Profile = () => {
                 </label>
               </div>
 
-
               <div className="sm:col-span-4">
                 <label
                   htmlFor="email"
@@ -123,7 +123,9 @@ const Profile = () => {
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     onChange={handleChange}
                   >
-                    <option value="Recreational & Friendly">Recreational & Friendly</option>
+                    <option value="Recreational & Friendly">
+                      Recreational & Friendly
+                    </option>
                     <option value="Competitive">Competitive</option>
                     <option value="Professional">Professional</option>
                     <option value="Elite">Elite</option>
@@ -138,12 +140,10 @@ const Profile = () => {
                 >
                   Past Runs: {user.pastRuns}
                 </label>
-                <div className="mt-1">
-                </div>
+                <div className="mt-1"></div>
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="pt-5">
@@ -156,7 +156,8 @@ const Profile = () => {
             </button>
             <button
               type="submit"
-              className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onSubmit={handleSubmit}
+              className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              onSubmit={handleSubmit}
             >
               Save
             </button>
