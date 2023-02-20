@@ -82,6 +82,15 @@ const getAllRuns = async (req, res) => {
     try {
         const { id } = req.params
         const runs = await Run.find({ players: id })
+        return res.status(200).json({runs})
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const getRuns = async (req, res) => {
+    try {
+        const runs = await Run.find()
         return res.status(200).json(runs)
     } catch (error) {
         return res.status(500).send(error.message);
@@ -121,6 +130,7 @@ const deleteRun = async (req, res) => {
         return res.status(500).send(error.message);
     }
 }
+
 module.exports = {
     createUser,
     getAllUsers,

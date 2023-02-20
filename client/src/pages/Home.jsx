@@ -1,41 +1,26 @@
-import Card from "../components/Card"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
 const Home = () => {
 
-  const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  // More people...
-]
+	const [runs, setRuns] = useState([])
 
-  const [runs, setRuns] = useState([])
-  
-  useEffect(() => {
-    setRuns()
-  },[])
+	useEffect(() => {
+		getRuns()
+	}, [])
 
-  const getRuns = async () => {
-    //get all runs
-    const res = axios.get("")
-
-  }
+	const getRuns = async () => {
+		const res = await axios.get("/api/runs")
+		setRuns(res.data)
+	}
   
   return (
-    <div className="px-6 lg:px-8">
+    <div className="px-6 lg:px-8 mt-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-xl font-semibold text-gray-900">Users</h1>
+          <h1 className="text-xl font-semibold text-gray-900">Runs</h1>
           <p className="mt-2 text-sm text-gray-700">
-            A list of all the users in your account including their name, title, email and role.
+            A list of all the runs.
           </p>
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -54,16 +39,16 @@ const Home = () => {
               <thead>
                 <tr>
                   <th scope="col" className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                    Name
+                    Location
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Title
+                    Date/Time
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Status
+                    Vacancy
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Role
+                    Host
                   </th>
                   <th scope="col" className="relative py-3.5 pl-3 pr-6 sm:pr-0">
                     <span className="sr-only">Edit</span>
@@ -71,32 +56,33 @@ const Home = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
-                {people.map((person) => (
-                  <tr key={person.email}>
+                {runs.map((run) => (
+                  <tr key={run._id}>
                     <td className="whitespace-nowrap py-4 pl-6 pr-3 text-sm sm:pl-0">
                       <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0">
-                          <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
-                        </div>
+                        {/* <div className="h-10 w-10 flex-shrink-0">
+                          <img className="h-10 w-10 rounded-full" src={run.image} alt="" />
+                        </div> */}
                         <div className="ml-4">
-                          <div className="font-medium text-gray-900">{person.name}</div>
-                          <div className="text-gray-500">{person.email}</div>
+                          <div className="font-medium text-gray-900">{run.location}</div>
+                          <div className="text-gray-500">{run.address}</div>
                         </div>
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <div className="text-gray-900">{person.title}</div>
-                      <div className="text-gray-500">{person.department}</div>
+                      <div className="text-gray-900">{run.date}</div>
+                      <div className="text-gray-500">{run.time}</div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                        Active
+                        {run.isFull && "Full"}
+                        {!run.isFull && `${30 - run.players.length} spaces available`}
                       </span>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{run.host}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-6 text-right text-sm font-medium sm:pr-0">
-                      <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                        Edit<span className="sr-only">, {person.name}</span>
+                      <a href={`/run/${run._id}`} className="text-indigo-600 hover:text-indigo-900 mr-8">
+                        More info<span className="sr-only">, {run.name}</span>
                       </a>
                     </td>
                   </tr>
@@ -109,6 +95,4 @@ const Home = () => {
     </div>
   )
 }
-
-
 export default Home

@@ -1,22 +1,13 @@
-import { Link } from 'react-router-dom'
 
 const nav = () => {
   const navigation = [
-    { name: "Solutions", href: "#" },
-    { name: "Pricing", href: "#" },
-    { name: "Docs", href: "#" },
-    { name: "Company", href: "#" },
+    { name: "Home", href: "/" },
+    // { name: "", href: "#" },
+    { name: "About", href: "/about" },
+    { name: "FAQ", href: "/faq" },
   ]
   return (
     <>
-    <section>
-      <Link to='/home'>Home</Link>
-      <Link to='/faq'>FAQ</Link>
-      <Link to='/profile'>My Profile</Link>
-      <Link to='/signin'>Sign In</Link>
-    </section>
-    
-
     <header className="bg-indigo-600">
       <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
@@ -34,17 +25,17 @@ const nav = () => {
             </div>
           </div>
           <div className="ml-10 space-x-4">
-            <a
+            {/* <a
               href="#"
               className="inline-block rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-base font-medium text-white hover:bg-opacity-75"
             >
               Sign in
-            </a>
+            </a> */}
             <a
-              href="#"
+              href="/profile"
               className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-indigo-600 hover:bg-indigo-50"
             >
-              Sign up
+              My Profile
             </a>
           </div>
         </div>
@@ -65,3 +56,4 @@ const nav = () => {
 
 
 export default nav
+
