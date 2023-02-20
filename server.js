@@ -16,15 +16,13 @@ app.use(logger('dev'))
 
 app.use('/home', routes);
 
-// Heroku deployment - add this below
-// app.use(express.static(`${__dirname}/client/build`))
+app.use(express.static(`${__dirname}/client/build`))
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-// Heroku deployment - add this below
-// app.get('/*', (req, res) => {
-//     res.sendFile(`${__dirname}/client/build/index.html`)
-// })
+app.get('/*', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+})
 
 
 app.listen(PORT, () =>
