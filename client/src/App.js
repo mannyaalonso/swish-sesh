@@ -1,10 +1,4 @@
-<<<<<<<<< Temporary merge branch 1
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
-=========
+
 import { Route, Routes } from "react-router-dom"
 import Confirmation from "./pages/Confirmation"
 import Registration from "./pages/Registration"
@@ -30,7 +24,7 @@ function App() {
     </main>
     </header>
   )
->>>>>>>>> Temporary merge branch 2
+
 }
 
 export default App
