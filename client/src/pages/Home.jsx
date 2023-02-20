@@ -1,10 +1,20 @@
 import Card from "../components/Card"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const Home = () => {
 
   const [runs, setRuns] = useState([])
   
+  useEffect(() => {
+    setRuns()
+  },[])
+
+  const getRuns = async () => {
+    //get all runs
+    const res = axios.get("")
+
+  }
 
   return (
     <div>

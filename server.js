@@ -1,12 +1,10 @@
 require("dotenv").config()
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 const express = require('express')
 const routes = require('./routes')
 const db = require('./db')
 const logger = require('morgan')
 const cors = require('cors')
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2022-11-15',
-});
 
 const PORT = process.env.PORT || 3001
 
@@ -33,8 +31,8 @@ app.post('/create-checkout-session', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${YOUR_DOMAIN}?success=true`,
-      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+      success_url: `?success=true`,
+      cancel_url: `?canceled=true`,
     });
   
     res.redirect(303, session.url);

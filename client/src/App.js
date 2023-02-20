@@ -20,7 +20,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/payment" element={<Payment />} />
       </Routes>
     </main>
     </header>
