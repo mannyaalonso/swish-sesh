@@ -24,7 +24,7 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     try {
         const { id } = req.params;
-        const user = await User.findById(id)
+        const user = await User.findById(id).populate("pastRuns")
         if (user) {
             return res.status(200).json({ user });
         }
@@ -50,6 +50,15 @@ const deleteUser = async (req, res) => {
         if (deleted) {
             return res.status(200).send('User deleted');
         }
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const getRuns = async (req, res) => {
+    try {
+        const runs = await Run.find()
+        return res.status(200).json({ runs })
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -133,5 +142,5 @@ module.exports = {
     getRunById,
     updateRun,
     deleteRun,
-    getRuns
+    getRuns,
 }
