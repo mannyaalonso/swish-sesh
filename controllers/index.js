@@ -121,18 +121,6 @@ const deleteRun = async (req, res) => {
         return res.status(500).send(error.message);
     }
 }
-
-const loginUser = async (req, res) => {
-  const { email } = req.body
-  User.findOne({ email }, (error, user) => {
-    if (!user) {
-      return res.status(401).json({ message: "Email not found" })
-    } else {
-      res.status(200).json({ message: "Login successful", user: user })
-    }
-  })
-}
-
 module.exports = {
     createUser,
     getAllUsers,
@@ -144,9 +132,5 @@ module.exports = {
     getRunById,
     updateRun,
     deleteRun,
-<<<<<<< HEAD
-    getRuns
-=======
-    loginUser
->>>>>>> ff42ed5bc4f390ffd2f18b08627f9475be5e984d
+    getRuns,
 }
