@@ -33,7 +33,7 @@ export const Payment = () => {
 			<div>Payment</div>
 			{stripePromise && clientSecret && (
 				<Elements
-					stripe={stripePromise}
+					stripe={ stripePromise }
 					options={{ clientSecret }}
 				>
 					<CheckoutForm />

@@ -1,15 +1,12 @@
+require("dotenv").config()
 const express = require('express')
 const routes = require('./routes')
 const db = require('./db')
 const logger = require('morgan')
 const cors = require('cors')
-const Stripe = require('stripe')
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2022-11-15',
 });
-require("dotenv").config()
-
-
 
 const PORT = process.env.PORT || 3001
 
@@ -26,31 +23,21 @@ app.use(express.static(`${__dirname}/client/build`))
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-app.get("/config", (req, res) => {
-    res.send({
-        publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
-    })
-})
-
-app.post("/create-payment-intent", async (req, res) => {
-    try {
-      const paymentIntent = await stripe.paymentIntents.create({
-        currency: "EUR",
-        amount: 1999,
-        automatic_payment_methods: { enabled: true },
-      });
-  
-      // Send publishable key and PaymentIntent details to client
-      res.send({
-        clientSecret: paymentIntent.client_secret,
-      });
-    } catch (e) {
-      return res.status(400).send({
-        error: {
-          message: e.message,
+app.post('/create-checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+          price: '{{PRICE_ID}}',
+          quantity: 1,
         },
-      });
-    }
+      ],
+      mode: 'payment',
+      success_url: `${YOUR_DOMAIN}?success=true`,
+      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    });
+  
+    res.redirect(303, session.url);
   });
 
 app.get('/*', (req, res) => {
