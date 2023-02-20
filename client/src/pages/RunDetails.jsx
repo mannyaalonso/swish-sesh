@@ -67,7 +67,7 @@ const RunDetails = () => {
                               <td className="whitespace-nowrap py-4 pl-6 pr-3 text-sm sm:pl-0">
                                 <div className="flex items-center">
                                   <div className="h-10 w-10 flex-shrink-0">
-                                    <img className="h-10 w-10 rounded-full" src={player.picture} alt="" />
+                                    <img className="h-10 w-10 rounded-full" src={player.picture} alt="profile picture of player" />
                                   </div>
                                   <div className="ml-4">
                                     <div className="font-medium text-gray-900">{player.name}</div>
