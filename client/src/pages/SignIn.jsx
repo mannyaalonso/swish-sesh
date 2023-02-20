@@ -6,12 +6,6 @@ import axios from "axios"
 const SignIn = () => {
   const [user, setUser] = useState({})
 
-  const createUser = async (userObject) => {
-    console.log(userObject)
-  }
-
-  console.log(user)
-
   const handleCallBackResponse = async (response) => {
     let userObject = jwt_decode(response.credential)
     try {
@@ -19,7 +13,7 @@ const SignIn = () => {
         name: userObject.name,
         email: userObject.email,
         picture: userObject.picture,
-        experience: "",
+        experience: "Elite",
         hasPayment: false,
       })
       setUser(res.data.user)
@@ -28,7 +22,9 @@ const SignIn = () => {
         try {
           let email = { email: userObject.email }
           let res = await axios.post("/api/login", email)
-          if (res.data.message === "Login successful") setUser(res.data.user)
+          if (res.data.message === "Login successful") {
+            setUser(res.data.user)
+          }
         } catch (e) {}
       }
     }

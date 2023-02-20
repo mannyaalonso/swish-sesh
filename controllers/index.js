@@ -126,8 +126,20 @@ const deleteRun = async (req, res) => {
   }
 }
 
+const loginUser = async (req, res) => {
+  const { email } = req.body
+  User.findOne({ email }, (error, user) => {
+    if (!user) {
+      return res.status(401).json({ message: "Email not found" })
+    } else {
+      res.status(200).json({ message: "Login successful", user: user })
+    }
+  })
+}
+
 module.exports = {
   createUser,
+  loginUser,
   getAllUsers,
   getUserById,
   updateUser,
