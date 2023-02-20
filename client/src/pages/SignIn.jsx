@@ -1,10 +1,10 @@
 import { FaBasketballBall } from "react-icons/fa"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import jwt_decode from "jwt-decode"
 import axios from "axios"
 
-const SignIn = () => {
-  const [user, setUser] = useState({})
+const SignIn = ({ setUser }) => {
+  
 
   const handleCallBackResponse = async (response) => {
     let userObject = jwt_decode(response.credential)
