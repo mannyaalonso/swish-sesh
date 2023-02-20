@@ -53,10 +53,10 @@ const SignIn = () => {
           <div>
             <FaBasketballBall className="mx-auto h-12 w-auto text-indigo-600" />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to register for a{""}
+              Sign in to register for {" "}
               <span className="text-indigo-600 hover:text-indigo-500">
                 Swish Sesh
-              </span>{" "}Run
+              </span>
             </h2>
           </div>
           <form
