@@ -6,6 +6,7 @@ import SignIn from "./pages/SignIn"
 import Home from "./pages/Home"
 import Faq from "./pages/Faq"
 import Nav from "./components/Nav"
+import Payment from "./pages/Payment"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </main>
     </header>
