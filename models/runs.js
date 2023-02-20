@@ -6,7 +6,7 @@ const runsSchema = new Schema(
         time: { type: String, required: true },
         host: { type: String, required: true },
         players: { type: Schema.Types.ObjectId, ref: 'User' },
-        location: { type: string, required: true },
+        location: { type: String, required: true },
         isFull: { type: Boolean, required: true }
     },
     { timestamps: true }
