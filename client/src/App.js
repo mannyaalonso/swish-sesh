@@ -1,3 +1,4 @@
+
 import { Route, Routes } from "react-router-dom"
 import Confirmation from "./pages/Confirmation"
 import Registration from "./pages/Registration"
@@ -23,6 +24,7 @@ function App() {
     </main>
     </header>
   )
+
 }
 
 export default App
