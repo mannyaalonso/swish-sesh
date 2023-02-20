@@ -9,9 +9,10 @@ const Profile = () => {
 
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/63f3d9d269dd3b32ef27e0f3`)
-      setUser(res.data.user)
-      // console.log(res.data.user)
+      const res = await axios.get(`/api/user/${user._id}`)
+      // setUser(res.data.user)
+      setUser(res)
+      // console.log(res)
     } catch (err) {
       console.log(err)
     }
