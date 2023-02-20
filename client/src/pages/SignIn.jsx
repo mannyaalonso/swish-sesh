@@ -7,8 +7,15 @@ const SignIn = () => {
   const [user, setUser] = useState({})
 
   const createUser = async (userObject) => {
+    console.log(userObject)
+  }
+
+  console.log(user)
+
+  const handleCallBackResponse = async (response) => {
+    let userObject = jwt_decode(response.credential)
     try {
-      const res = await axios.post(`http://localhost:3001/api/user`, {
+      const res = await axios.post(`/api/user`, {
         name: userObject.name,
         email: userObject.email,
         picture: userObject.picture,
@@ -25,14 +32,6 @@ const SignIn = () => {
         } catch (e) {}
       }
     }
-  }
-
-  console.log(user)
-
-  const handleCallBackResponse = async (response) => {
-    let userObject = jwt_decode(response.credential)
-    console.log(userObject)
-    createUser(userObject)
   }
 
   useEffect(() => {
@@ -55,7 +54,7 @@ const SignIn = () => {
           <div>
             <FaBasketballBall className="mx-auto h-12 w-auto text-indigo-600" />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to register for {" "}
+              Sign in to register for&nbsp;
               <span className="text-indigo-600 hover:text-indigo-500">
                 Swish Sesh
               </span>
