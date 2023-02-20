@@ -11,10 +11,10 @@ const Home = () => {
 
 	const getRuns = async () => {
 		const res = await axios.get("/api/runs")
-		setRuns(res.data)
+		setRuns(res.data.runs)
 	}
   
-  return (
+  return runs && (
     <div className="px-6 lg:px-8 mt-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
