@@ -91,7 +91,7 @@ const getAllRuns = async (req, res) => {
 const getRunById = async (req, res) => {
     try {
         const { id } = req.params;
-        const run = await Run.findById(id)
+        const run = await Run.findById(id).populate("players")
         if (run) {
             return res.status(200).json({ run });
         }
