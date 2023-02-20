@@ -5,9 +5,12 @@ import Profile from "./pages/Profile"
 import SignIn from "./pages/SignIn"
 import Home from "./pages/Home"
 import Faq from "./pages/Faq"
+import Nav from "./components/Nav"
 
 function App() {
   return (
+    <header>
+      <Nav />
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,6 +21,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
       </Routes>
     </main>
+    </header>
   )
 }
 
