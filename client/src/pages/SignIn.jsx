@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
 import { FaBasketballBall } from "react-icons/fa"
+import { useState, useEffect } from "react"
 import jwt_decode from "jwt-decode"
 import axios from "axios"
 
@@ -37,8 +37,7 @@ const SignIn = () => {
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
-      client_id:
-        "274175101183-4mve9l24sn15adfls3jrhdpt177clk8k.apps.googleusercontent.com",
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleCallBackResponse,
     })
     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
