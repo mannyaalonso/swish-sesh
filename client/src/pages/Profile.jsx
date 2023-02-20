@@ -3,13 +3,15 @@ import { useEffect, useState, } from 'react'
 
 const Profile = () => {
   const [user, setUser] = useState([])
-  const [updateExp, setUpdateExp] = useState({})
+  const [updateExp, setUpdateExp] = useState({ experience: `${user.experience}` })
+
+  console.log(user.experience)
 
   const getUser = async (e) => {
     try {
       const res = await axios.get(`/api/user/63f3d9d269dd3b32ef27e0f3`)
       setUser(res.data.user)
-      console.log(res.data.user)
+      // console.log(res.data.user)
     } catch (err) {
       console.log(err)
     }
@@ -19,12 +21,25 @@ const Profile = () => {
     getUser()
   }, [])
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   const updateExp
-  // }
+  const handleSubmit = async (e) => {
+    // console.log(e)
+    e.preventDefault()
+    const updateExpPackage = {
+      experience: updateExp.experience
+    }
+    const response = await axios.put(`/api/user/63f3d9d269dd3b32ef27e0f3`, updateExpPackage)
+    console.log(updateExp)
+  }
 
-  // const handleChange
+  const handleChange = (e) => {
+    // e.preventDefault()
+    setUpdateExp({
+      // ...updateExp, 
+      [e.target.name]: e.target.value
+    })
+    // console.log(e.target.name)
+    // console.log(e.target.value)
+  }
 
   return (
 
@@ -103,13 +118,14 @@ const Profile = () => {
                     id="experience"
                     name="experience"
                     type="text"
-                    autoComplete="experience"
+                    // autoComplete="experience"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    onChange={handleChange}
                   >
-                    <option value="">Recreational & Friendly</option>
-                    <option value="">Competitive</option>
-                    <option value="">Professional</option>
-                    <option value="">Elite</option>
+                    <option value="Recreational & Friendly">Recreational & Friendly</option>
+                    <option value="Competitive">Competitive</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Elite">Elite</option>
                   </select>
                 </div>
               </div>
@@ -139,7 +155,7 @@ const Profile = () => {
             </button>
             <button
               type="submit"
-              className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onSubmit={handleSubmit}
             >
               Save
             </button>
