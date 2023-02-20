@@ -13,6 +13,20 @@ export const Payment = () => {
 		})
 	}, [])
 
+	useEffect(() => {
+		fetch("http://localhost:3001/create-payment-intent", {
+            method: "POST",
+            body: JSON.stringify({})
+        }).then(async (r) => {
+			const { clientSecret } = await r.json()
+
+			console.log(clientSecret)
+			// setStripePromise(loadStripe(publishableKey))
+		})
+	}, [])
+
+
+
 	return <div>Payment</div>
 }
 
