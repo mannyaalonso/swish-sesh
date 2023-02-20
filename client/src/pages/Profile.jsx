@@ -1,9 +1,10 @@
 
 
 const Profile = () => {
+  //get users info - axios
   return (
-    <div>
-      
+    <div className='profile'>
+      <h1 className="profileName"></h1>
     </div>
   )
 }
