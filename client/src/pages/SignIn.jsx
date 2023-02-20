@@ -1,4 +1,3 @@
-import { LockClosedIcon } from "@heroicons/react/20/solid"
 import { useState, useEffect } from "react"
 import { FaBasketballBall } from "react-icons/fa"
 import jwt_decode from "jwt-decode"
