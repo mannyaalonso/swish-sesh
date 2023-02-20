@@ -31,6 +31,7 @@ const SignIn = () => {
 
   const handleCallBackResponse = async (response) => {
     let userObject = jwt_decode(response.credential)
+    console.log(userObject)
     createUser(userObject)
   }
 
