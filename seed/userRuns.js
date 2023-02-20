@@ -29,7 +29,7 @@ const main = async () => {
             date: '03/30/2023',
             time: '6:00 PM EST',
             host: 'Jimmy Doe',
-            players: user1._id,
+            players: [user1._id],
             location: 'Winder Recreation Center',
             isFull: false
         },
@@ -37,7 +37,7 @@ const main = async () => {
             date: '02/28/2023',
             time: '7:00 PM EST',
             host: 'Martha Doe',
-            players: user2._id,
+            players: [user2._id],
             location: 'Atlanta Recreation Center',
             isFull: false
         }

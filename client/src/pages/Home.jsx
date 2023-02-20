@@ -15,7 +15,7 @@ const Home = () => {
 	}
   
   return (
-    <div className="px-6 lg:px-8">
+    <div className="px-6 lg:px-8 mt-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">Runs</h1>
@@ -57,15 +57,15 @@ const Home = () => {
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {runs.map((run) => (
-                  <tr key={run.email}>
+                  <tr key={run._id}>
                     <td className="whitespace-nowrap py-4 pl-6 pr-3 text-sm sm:pl-0">
                       <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0">
+                        {/* <div className="h-10 w-10 flex-shrink-0">
                           <img className="h-10 w-10 rounded-full" src={run.image} alt="" />
-                        </div>
+                        </div> */}
                         <div className="ml-4">
                           <div className="font-medium text-gray-900">{run.location}</div>
-                          <div className="text-gray-500">{run.host}</div>
+                          <div className="text-gray-500">{run.address}</div>
                         </div>
                       </div>
                     </td>
@@ -76,12 +76,12 @@ const Home = () => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
                         {run.isFull && "Full"}
-                        {!run.isFull && `${run.players.length} spaces available`}
+                        {!run.isFull && `${30 - run.players.length} spaces available`}
                       </span>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{run.isFull}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{run.host}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-6 text-right text-sm font-medium sm:pr-0">
-                      <a href={`${run._id}`} className="text-indigo-600 hover:text-indigo-900">
+                      <a href={`/run/${run._id}`} className="text-indigo-600 hover:text-indigo-900 mr-8">
                         More info<span className="sr-only">, {run.name}</span>
                       </a>
                     </td>

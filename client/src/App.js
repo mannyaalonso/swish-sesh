@@ -8,6 +8,7 @@ import Faq from "./pages/Faq"
 import Payment from "./pages/Payment"
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
+import RunDetails from "./pages/RunDetails"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/run/:id" element={<RunDetails />} />
       </Routes>
     </main>
     </header>
