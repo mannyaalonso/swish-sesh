@@ -23,7 +23,7 @@ function App() {
     </main>
     </header>
   )
-  
+
 }
 
 export default App
