@@ -1,8 +1,26 @@
-
+import axios from 'axios'
+import { useEffect, useState, } from 'react'
 
 const Profile = () => {
+  const [runs, setRuns] = useState([])
+
+  const [user, setUser] = useState([])
+  const getUser = async (e) => {
+    try {
+      const res = await axios.get(`/api/user/63f3d9d269dd3b32ef27e0f3`)
+      setUser(res.data.user)
+      console.log(res.data.user)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
 
   return (
+
     <div className="p-20">
       <form className="space-y-8 divide-y divide-gray-200">
         <div className="space-y-8 divide-y divide-gray-200">
@@ -52,53 +70,18 @@ const Profile = () => {
                   htmlFor="first-name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  First name
+                  Full Name: {user.name}
                 </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
               </div>
 
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="last-name"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Last name
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="last-name"
-                    id="last-name"
-                    autoComplete="family-name"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
 
               <div className="sm:col-span-4">
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email address
+                  Email address: {user.email}
                 </label>
-                <div className="mt-1">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
               </div>
 
               <div className="sm:col-span-4">
@@ -129,21 +112,9 @@ const Profile = () => {
                   htmlFor="pastRun"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Run
+                  Run: {user.pastRuns}
                 </label>
                 <div className="mt-1">
-                  <select
-                    id="pastRun"
-                    name="pastRun"
-                    type="text"
-                    autoComplete="pastRun"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  >
-                    <option value="">Recreational & Friendly</option>
-                    <option value="">Competitive</option>
-                    <option value="">Professional</option>
-                    <option value="">Elite</option>
-                  </select>
                 </div>
               </div>
             </div>

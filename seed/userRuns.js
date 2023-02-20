@@ -1,5 +1,5 @@
 const db = require('../db')
-const { User, Runs } = require('../models')
+const { User, Run } = require('../models')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
@@ -42,13 +42,13 @@ const main = async () => {
             isFull: false
         }
     ]
-    await Runs.insertMany(runs)
+    await Run.insertMany(runs)
     console.log('Added Runs!')
 }
 
 const run = async () => {
     await main()
-    db.close()
+    // db.close()
 }
 
 run()

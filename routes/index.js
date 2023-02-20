@@ -12,11 +12,11 @@ router.delete('/user/:id', controllers.deleteUser)
 
 
 
-router.post('/user/:id/run', controllers.createRun)
-router.get('/user/:id/runs', controllers.getAllRuns)
-router.get('/user/:id/run/:id', controllers.getRunById)
-router.put('/user/:id/run/:id', controllers.updateRun)
-router.delete('/user/:id/run/:id', controllers.deleteRun)
+router.post('/run', controllers.createRun)
+router.get('/runs', controllers.getAllRuns)
+router.get('/run/:id', controllers.getRunById)
+router.put('/run/:id', controllers.updateRun)
+router.delete('/run/:id', controllers.deleteRun)
 
 
 
