@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const controllers = require('../controllers')
 const router = Router();
+const controllers = require('../controllers')
 
 router.get('/', (req, res) => res.send('This is root!'))
 
@@ -10,7 +10,7 @@ router.get('/user/:id', controllers.getUserById)
 router.put('/user/:id', controllers.updateUser)
 router.delete('/user/:id', controllers.deleteUser)
 
-router.post("/login", controllers.loginUser)
+// router.post("/login", controllers.loginUser)
 
 router.post('/user/:id/run', controllers.createRun)
 router.get('/user/:id/runs', controllers.getAllRuns)

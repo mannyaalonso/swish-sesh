@@ -4,21 +4,24 @@ import axios from "axios"
 
 const Home = () => {
 
-  const [runs, setRuns] = useState([])
-  
-  useEffect(() => {
-    setRuns()
-  },[])
+	const [runs, setRuns] = useState([])
 
-  const getRuns = async () => {
-    //get all runs
-    const res = axios.get("")
+	useEffect(() => {
+		getRuns()
+	}, [])
 
-  }
+	const getRuns = async () => {
+		const res = await axios.get("/api/runs")
+		setRuns(res.data)
+	}
 
-  return (
+	const runsArray = runs.map((run) => (
+		<Card {...run} key={run._id}/>
+  ))
+
+	return (
     <div>
-      
+      {runsArray}
     </div>
   )
 }
