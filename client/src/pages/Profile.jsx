@@ -9,9 +9,9 @@ const Profile = () => {
 
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/${user._id}`)
-      // setUser(res.data.user)
-      setUser(res)
+      const res = await axios.get(`/api/user/63f3f2c0f1105e076a869468`)
+      setUser(res.data.user)
+      // setUser(res)
       // console.log(res)
     } catch (err) {
       console.log(err)
@@ -28,7 +28,7 @@ const Profile = () => {
     const updateExpPackage = {
       experience: updateExp.experience
     }
-    const response = await axios.put(`/api/user/63f3d9d269dd3b32ef27e0f3`, updateExpPackage)
+    const response = await axios.put(`/api/user/63f3f2c0f1105e076a869468`, updateExpPackage)
     console.log(updateExp)
   }
 
