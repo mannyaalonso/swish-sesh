@@ -19,7 +19,7 @@ function App() {
       <header>
         <Nav />
       </header>
-      <main className="h-96">
+      <main className="h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/confirmation" element={<Confirmation />} />
