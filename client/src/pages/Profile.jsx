@@ -14,6 +14,7 @@ const Profile = (
   // const [currentUserId, setCurrentUserId] = useState('')
 
   console.log(currentUser.experience)
+  console.log(updateUser)
 
   // const getUser = async (e) => {
   //   try {
@@ -47,23 +48,20 @@ const Profile = (
   }, [])
 
   const handleSubmit = async (e) => {
+    console.log(e)
     e.preventDefault()
     const updateExpPackage = {
-      experience: updateUser.experience,
+      experience: updateUser,
     }
-
-    console.log(updateExpPackage)
-    const response = await axios.put(`/api/user/63f3f2c0f1105e076a869468/`, updateExpPackage)
-
+    // console.log(updateExpPackage)
+    const res = await axios.put(`/api/user/63f3f2c0f1105e076a869468`, updateExpPackage)
   }
   // const handleEditState = (currentUser) => {
   //   setUpdateExp({ experience: `${currentUser.experience}` })
   //   setUserId(currentUser._id)
   // }
   const handleChange = (e) => {
-    // e.preventDefault()
     setUpdateUser({
-      // ...updateExp,
       [e.target.name]: e.target.value,
     })
     // console.log(e.target.name)
@@ -164,10 +162,9 @@ const Profile = (
                       id="updateExp"
                       name="experience"
                       type="text"
-                      // autoComplete="experience"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       onChange={handleChange}
-                      value={updateUser.experience}
+                      value={updateUser}
                     >
                       <option value="Recreational & Friendly">
                         Recreational & Friendly
@@ -198,24 +195,6 @@ const Profile = (
             </div>
           </div>
         </div>
-
-        {/* <div className="pt-5">
-          <div className="flex justify-end">
-            <button
-              type="button"
-              className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              onSubmit={handleSubmit}
-            >
-              Save
-            </button>
-          </div>
-        </div> */}
       </form>
     </div>
   )
