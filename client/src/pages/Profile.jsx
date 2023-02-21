@@ -1,40 +1,33 @@
 import axios from 'axios'
 import { useEffect, useState, } from 'react'
 
-const Profile = ({ user }) => {
-  //const [user, setUser] = useState(user)
-  const [updateExp, setUpdateExp] = useState({
-    experience: `${user.experience}`,
-  })
+const Profile = ({ userId }) => {
+  const [user, setUser] = useState({})
+  const [updateExp, setUpdateExp] = useState({})
 
-  console.log(user.experience)
-
-  // const getUser = async (e) => {
-  //   try {
-  //     const res = await axios.get(`/api/user/${user._id}`)
-  //     // setUser(res.data.user)
-  //     setUser(res)
-  //     // console.log(res)
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
+  const getUser = async (e) => {
+    try {
+      const res = await axios.get(`/api/user/${userId}`)
+      setUser(res.data.user)
+      setUpdateExp({experience: `${user.experience}`})
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   useEffect(() => {
-    //getUser()
+    getUser()
   }, [])
 
   const handleSubmit = async (e) => {
-    // console.log(e)
     e.preventDefault()
     const updateExpPackage = {
       experience: updateExp.experience,
     }
-    const response = await axios.put(
+    await axios.put(
       `/api/user/63f3f2c0f1105e076a869468`,
       updateExpPackage
     )
-    console.log(updateExp)
   }
 
   const handleChange = (e) => {

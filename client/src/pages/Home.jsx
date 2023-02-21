@@ -20,7 +20,7 @@ const Home = ({ user }) => {
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-gray-900">Runs</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the runs.
+              Click 'More Info' next to a run to register
             </p>
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -28,7 +28,7 @@ const Home = ({ user }) => {
               type="button"
               className="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Add user
+              Add Run
             </button>
           </div>
         </div>
