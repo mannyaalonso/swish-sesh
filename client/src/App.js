@@ -3,7 +3,6 @@ import Confirmation from "./pages/Confirmation"
 import Registration from "./pages/Registration"
 import RunDetails from "./pages/RunDetails"
 import Footer from "./components/Footer"
-import Payment from "./pages/Payment"
 import Profile from "./pages/Profile"
 import SignIn from "./pages/SignIn"
 import Nav from "./components/Nav"
@@ -15,14 +14,12 @@ import Faq from "./pages/Faq"
 function App() {
   const [user, setUser] = useState("")
 
-  console.log("USER", user)
-
   return (
     <>
       <header>
         <Nav />
       </header>
-      <main>
+      <main className="h-96">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/confirmation" element={<Confirmation />} />
