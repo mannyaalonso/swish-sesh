@@ -36,8 +36,8 @@ const nav = () => {
             <a
               href="/profile"
               className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-indigo-600 hover:bg-indigo-50"
-            >
-              My Profile
+            >{sessionStorage.getItem("user") ? 
+              <p>My Profile</p> : <p>Sign In</p>}
             </a>
           </div>
         </div>
