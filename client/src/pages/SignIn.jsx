@@ -16,14 +16,16 @@ const SignIn = ({ setUser }) => {
         experience: "Elite",
         hasPayment: false,
       })
-      setUser(res.data.user)
+      setUser(res.data.user._id)
+      sessionStorage.setItem('user', res.data.user._id)
     } catch (err) {
       if (err.response.status === 500) {
         try {
           let email = { email: userObject.email }
           let res = await axios.post("/api/login", email)
           if (res.data.message === "Login successful") {
-            setUser(res.data.user)
+            setUser(res.data.user._id)
+            sessionStorage.setItem("user", res.data.user._id)
           }
         } catch (e) {}
       }
