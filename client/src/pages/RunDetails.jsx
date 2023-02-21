@@ -1,12 +1,14 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { BsFillPersonFill } from "react-icons/bs"
 import axios from "axios"
 
-const RunDetails = ({ user }) => {
+const RunDetails = () => {
 	const [selectedRun, setSelectedRun] = useState({})
 
 	let { id } = useParams()
+
+    let navigate = useNavigate()
 
 	useEffect(() => {
 		getRun()
@@ -30,14 +32,25 @@ const RunDetails = ({ user }) => {
 					</p>
 				</div>
 				<div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-					<form action='/create-checkout-session' method="POST">
+                    {sessionStorage.getItem("user") ? (
+                        <form action='/create-checkout-session' method="POST">
 						<button
 							type="submit"
+
 							className="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Register
 						</button>
 					</form>
+                    )
+                    :
+                    <button
+                    type="submit"
+                    onClick={() => navigate("/profile")}
+                    className="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                    Register
+                </button>}
 				</div>
 			</div>
 			<div className="mt-8 flow-root">
