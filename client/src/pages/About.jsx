@@ -11,18 +11,18 @@ const About = () => {
     <div className="relative bg-white">
       <img
         className="h-56 w-full bg-gray-50 object-cover lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2"
-        src="https://i.imgur.com/vMqA0WA.png"
+        src="https://i.imgur.com/q6HKElg.jpg"
         alt=""
       />
       <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
         <div className="px-6 pt-16 pb-24 sm:pt-20 sm:pb-32 lg:col-start-2 lg:px-8 lg:pt-32">
           <div className="mx-auto max-w-2xl lg:mr-0 lg:max-w-lg">
-            <h2 className="text-base font-semibold leading-8 text-indigo-600">Our Community</h2>
+            <h2 className="text-base font-semibold leading-8 text-indigo-600">Our Mission</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Where It's Bigger Than Basketball
+              Celebrate ATL's local hoops
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              SwishSesh is a community built to create opportunities for hoopers who details details details about here
+              Swishsesh is a platform built to educate and empower athletes.
             </p>
             <dl className="mt-16 grid max-w-xl grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 xl:mt-16">
               {stats.map((stat) => (
