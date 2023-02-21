@@ -14,8 +14,6 @@ import Faq from "./pages/Faq"
 function App() {
   const [user, setUser] = useState("")
 
-  console.log("USER", user)
-
   return (
     <>
       <header>
