@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState, } from 'react'
 
+
 const Profile = (
   // { user }
 ) => {
@@ -25,6 +26,7 @@ const Profile = (
   //   }
   // }
 
+
   // useEffect(() => {
   //   getUser()
   // }, [])
@@ -45,13 +47,14 @@ const Profile = (
   }, [])
 
   const handleSubmit = async (e) => {
-    // console.log(e)
     e.preventDefault()
     const updateExpPackage = {
       experience: updateUser.experience,
     }
+
     console.log(updateExpPackage)
     const response = await axios.put(`/api/user/63f3f2c0f1105e076a869468/`, updateExpPackage)
+
   }
   // const handleEditState = (currentUser) => {
   //   setUpdateExp({ experience: `${currentUser.experience}` })

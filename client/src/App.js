@@ -3,7 +3,6 @@ import Confirmation from "./pages/Confirmation"
 import Registration from "./pages/Registration"
 import RunDetails from "./pages/RunDetails"
 import Footer from "./components/Footer"
-import Payment from "./pages/Payment"
 import Profile from "./pages/Profile"
 import SignIn from "./pages/SignIn"
 import Nav from "./components/Nav"
@@ -13,24 +12,24 @@ import Home from "./pages/Home"
 import Faq from "./pages/Faq"
 
 function App() {
-  const [user, setUser] = useState({})
-  console.log(user)
+  const [user, setUser] = useState("")
 
   return (
     <>
       <header>
-        <Nav user={user} />
+        <Nav />
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Home user={user} />} />
-          <Route path="/confirmation" element={<Confirmation user={user} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/profile" element={<Profile user={user} />} />
-          <Route path="/registration" element={<Registration user={user} />} />
-          <Route path="/signin" element={<SignIn setUser={setUser} />} />
+          <Route path="/registration" element={<Registration />} />
           <Route path="/run/:id" element={<RunDetails />} />
+          {user === null ? 
+          <Route path="/profile" element={<Profile />} /> :
+          <Route path="/profile" element={<SignIn setUser={setUser} />} /> }
         </Routes>
       </main>
       <footer>

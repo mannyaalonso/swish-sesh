@@ -1,11 +1,11 @@
 import { FaBasketballBall } from "react-icons/fa"
-import { useEffect } from "react"
 import jwt_decode from "jwt-decode"
+import { useEffect } from "react"
+import Profile from "./Profile"
 import axios from "axios"
+/*global google*/
 
 const SignIn = ({ setUser }) => {
-  
-
   const handleCallBackResponse = async (response) => {
     let userObject = jwt_decode(response.credential)
     try {
@@ -16,14 +16,16 @@ const SignIn = ({ setUser }) => {
         experience: "Elite",
         hasPayment: false,
       })
-      setUser(res.data.user)
+      setUser(res.data.user._id)
+      sessionStorage.setItem('user', res.data.user._id)
     } catch (err) {
       if (err.response.status === 500) {
         try {
           let email = { email: userObject.email }
           let res = await axios.post("/api/login", email)
           if (res.data.message === "Login successful") {
-            setUser(res.data.user)
+            setUser(res.data.user._id)
+            sessionStorage.setItem("user", res.data.user._id)
           }
         } catch (e) {}
       }
@@ -31,7 +33,6 @@ const SignIn = ({ setUser }) => {
   }
 
   useEffect(() => {
-    /* global google */
     google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleCallBackResponse,
@@ -42,7 +43,7 @@ const SignIn = ({ setUser }) => {
     })
   }, [])
 
-  return (
+  return !sessionStorage.getItem("user") ? (
     <div className="h-screen">
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
@@ -65,6 +66,8 @@ const SignIn = ({ setUser }) => {
         </div>
       </div>
     </div>
+  ) : (
+    <Profile userId={sessionStorage.getItem("user")} />
   )
 }
 
