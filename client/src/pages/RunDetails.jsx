@@ -33,7 +33,7 @@ const RunDetails = () => {
 				</div>
 				<div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     {sessionStorage.getItem("user") ? (
-                        <form action='/create-checkout-session' method="POST">
+                        <form action={`/create-checkout-session?userId=${sessionStorage.getItem("user")}&runId=${selectedRun._id}`} method="POST">
 						<button
 							type="submit"
 
