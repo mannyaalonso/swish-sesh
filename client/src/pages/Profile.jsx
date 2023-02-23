@@ -131,7 +131,7 @@ const Profile = ({ userId }) => {
                       type="text"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       onChange={handleChange}
-                      value={updateUser}
+                      value={updateUser.experience}
                     >
                       <option value="Recreational & Friendly">
                         Recreational & Friendly
