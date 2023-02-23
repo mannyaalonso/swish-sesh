@@ -5,23 +5,23 @@ const Faq = () => {
 
   const faqs = [
   {
-    question: "Where Do I Sign Up?",
-    answer: "Players will be able to participate in a SwishSesh session once they have signed in their accounts using Google authentication.",
+    question: "What is Swishsesh?",
+    answer: "Swishsesh is a platform built to empower and educate athletes. We host weekly pickup runs, competitive events and training sessions to foster an inclusive, basketball community where athletes can develop and showcase their talents.",
   },
   {
-    question: "How Do I Secure A Spot",
+    question: "How do I sign up for a run?",
     answer:
-      "Once you have signed up and are a member of SwishSesh, you will be able to pay online to secure a spot for a given day",
+      "Sign up using our app! Register by selecting which date, time and location you would like to run.",
   },
   {
-    question: "How Many People Can Play Per Day",
+    question: "How much are runs?",
     answer:
-      "The total amount of players within a session will be 30.",
+      "$10.",
   },
   {
-    question: "Rules",
+    question: "Are you planning on expanding on locations outside of Doraville, GA?",
     answer:
-      "First 20 to get to the gym will play the first games. First game to 15, every other game to 12. 1's and 2's, straight up. If you win, your team advances to Winner's Court. If you lose, shoot or remaining spots on the respawn Court. If you sat out one game, you get on next game automatically on the Respawn Court.",
+      "Yes! If you are interested in hosting a run, please reach out to us at swishsesh@gmail.com.",
   },
 
 ]
