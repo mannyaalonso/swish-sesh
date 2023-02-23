@@ -27,7 +27,7 @@ const SignIn = ({ setUser }) => {
             setUser(res.data.user._id)
             sessionStorage.setItem("user", res.data.user._id)
           }
-        } catch (e) {}
+        } catch (e) { }
       }
     }
   }

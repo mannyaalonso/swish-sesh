@@ -1,5 +1,3 @@
-
-
 const Confirmation = ({ user }) => {
   return (
     <div>
