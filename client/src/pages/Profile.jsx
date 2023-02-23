@@ -31,6 +31,7 @@ const Profile = ({ userId }) => {
       experience: updateUser,
     }
     await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
+    getUser()
   };
 
   const handleChange = (e) => {
