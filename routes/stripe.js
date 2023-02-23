@@ -6,7 +6,6 @@ require("dotenv").config()
 
 const stripe = Stripe(process.env.STRIPE_KEY)
 const router = express.Router()
-const YOUR_DOMAIN = "http://localhost:3000"
 
 router.post("/create-checkout-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
@@ -17,8 +16,8 @@ router.post("/create-checkout-session", async (req, res) => {
       },
     ],
     mode: "payment",
-    success_url: `${YOUR_DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    success_url: `${process.env.DOMAIN_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.DOMAIN_URL}?canceled=true`,
   })
   res.redirect(303, session.url)
 })
