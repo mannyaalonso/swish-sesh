@@ -37,7 +37,6 @@ function App() {
       </footer>
     </>
   )
-
 }
 
 export default App
