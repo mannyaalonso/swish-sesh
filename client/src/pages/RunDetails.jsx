@@ -18,6 +18,13 @@ const RunDetails = ({ user }) => {
 		setSelectedRun(res.data.run)
 	}
 
+  const handlePost = async () => {
+    await axios.post('/api/stripe/create-checkout-session', {
+      userId: sessionStorage.getItem("user"),
+      runId: selectedRun._id
+    })
+  }
+
 	return (
 		<div className="px-6 lg:px-8 mt-8">
 			<div className="sm:flex sm:items-center">
@@ -30,9 +37,9 @@ const RunDetails = ({ user }) => {
 					</p>
 				</div>
 				<div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-					<form action='/create-checkout-session' method="POST">
+					<form action='/api/stripe/create-checkout-session' method="POST">
 						<button
-							type="submit"
+							
 							className="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Register

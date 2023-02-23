@@ -2,42 +2,20 @@ import axios from 'axios'
 import { useEffect, useState, } from 'react'
 
 
-const Profile = (
-  // { user }
-) => {
-  // const [currentUser, setCurrentUser] = useState(user)
+const Profile = ({ userId }) => {
   const [currentUser, setCurrentUser] = useState('')
   const [updateUser, setUpdateUser] = useState({
     experience: `${currentUser.experience}`,
   })
   const [editing, setEditing] = useState(false)
-  // const [currentUserId, setCurrentUserId] = useState('')
 
   // console.log(currentUser.experience)
   // console.log(updateUser)
 
-  // const getUser = async (e) => {
-  //   try {
-  //     const res = await axios.get(`/api/user/${user._id}`)
-  //     setCurrentUser(res.data.user)
-  //     // setCurrentUser(res)
-  //     // console.log(res)
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
-
-  // useEffect(() => {
-  //   getUser()
-  // }, [])
-
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/63f3f2c0f1105e076a869468`)
+      const res = await axios.get(`/api/user/${userId}`)
       setCurrentUser(res.data.user)
-      // setCurrentUser(res)
-      // console.log(res.data.user)
     } catch (err) {
       console.log(err)
     }
@@ -48,13 +26,11 @@ const Profile = (
   }, [])
 
   const handleSubmit = async (e) => {
-    console.log(e)
     e.preventDefault()
     const updateExpPackage = {
       experience: updateUser,
     }
-    // console.log(updateExpPackage)
-    const res = await axios.put(`/api/user/63f3f2c0f1105e076a869468`, updateExpPackage)
+   await axios.put(`/api/user/${userId}`, updateExpPackage)
   }
   // const handleEditState = (currentUser) => {
   //   setUpdateExp({ experience: `${currentUser.experience}` })
@@ -78,8 +54,7 @@ const Profile = (
                 Profile
               </h3>
               <p className="mt-1 text-sm text-gray-500">
-                This information will be displayed publicly so be careful what
-                you share.
+                You can edit your experience here.
               </p>
             </div>
 
@@ -93,13 +68,7 @@ const Profile = (
                 </label>
                 <div className="mt-1 flex items-center">
                   <span className="h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                    <svg
-                      className="h-full w-full text-gray-300"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
+                    <img src={currentUser.picture} alt="" />
                   </span>
                 </div>
               </div>
