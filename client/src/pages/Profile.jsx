@@ -3,50 +3,47 @@ import { useEffect, useState, } from 'react'
 
 
 const Profile = ({ userId }) => {
-  const [currentUser, setCurrentUser] = useState('')
+  const [currentUser, setCurrentUser] = useState('');
   const [updateUser, setUpdateUser] = useState({
-    experience: `${currentUser.experience}`,
-  })
-  const [editing, setEditing] = useState(false)
+    experience: `${currentUser.experience}`
+  });
+  const [editing, setEditing] = useState(false);
 
-  // console.log(currentUser.experience)
-  // console.log(updateUser)
+  console.log(currentUser.experience);
+  console.log(updateUser);
 
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/${userId}`)
-      setCurrentUser(res.data.user)
+      const res = await axios.get(`/api/user/${userId}`);
+      setCurrentUser(res.data.user);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    getUser()
-  }, [])
+    getUser();
+  }, []);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const updateExpPackage = {
       experience: updateUser,
     }
-   await axios.put(`/api/user/${userId}`, updateExpPackage)
-  }
-  // const handleEditState = (currentUser) => {
-  //   setUpdateExp({ experience: `${currentUser.experience}` })
-  //   setUserId(currentUser._id)
-  // }
+    await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
+  };
+
   const handleChange = (e) => {
     setUpdateUser({
-      [e.target.name]: e.target.value,
-    })
-    console.log(e.target.name)
-    console.log(e.target.value)
+      [e.target.name]: e.target.value
+    });
+    // console.log(e.target.name)
+    // console.log(e.target.value)
   }
 
   return (
     <div className="p-20">
-      <form className="space-y-8 divide-y divide-gray-200">
+      <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit}>
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
@@ -118,7 +115,7 @@ const Profile = ({ userId }) => {
                 </div>
               </div>
 
-              {editing &&
+              {editing && (
                 <div className="sm:col-span-4">
                   <label
                     htmlFor="updateExp"
@@ -145,12 +142,11 @@ const Profile = ({ userId }) => {
                     <button
                       type="submit"
                       className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onSubmit={handleSubmit}
                     >
                       Update
                     </button>
                   </div>
-                </div>}
+                </div>)}
 
               <div className="sm:col-span-4">
                 <label
