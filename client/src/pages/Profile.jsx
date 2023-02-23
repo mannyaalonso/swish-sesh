@@ -13,8 +13,8 @@ const Profile = (
   const [editing, setEditing] = useState(false)
   // const [currentUserId, setCurrentUserId] = useState('')
 
-  console.log(currentUser.experience)
-  console.log(updateUser)
+  // console.log(currentUser.experience)
+  // console.log(updateUser)
 
   // const getUser = async (e) => {
   //   try {
@@ -64,8 +64,8 @@ const Profile = (
     setUpdateUser({
       [e.target.name]: e.target.value,
     })
-    // console.log(e.target.name)
-    // console.log(e.target.value)
+    console.log(e.target.name)
+    console.log(e.target.value)
   }
 
   return (
