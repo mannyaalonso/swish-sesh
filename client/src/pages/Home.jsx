@@ -17,7 +17,7 @@ const Home = ({ user }) => {
 
   return (
     runs && (
-      <div className="px-6 lg:px-8 bg-slate-900 mt-32">
+      <div className="px-6 lg:px-8 bg-slate-900 lg:mt-32 mt-44">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-slate-100">Runs</h1>
