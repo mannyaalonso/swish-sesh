@@ -9,7 +9,6 @@ const Profile = ({ userId }) => {
   });
   const [editing, setEditing] = useState(false);
 
-  console.log(currentUser.experience);
   console.log(updateUser);
 
   const getUser = async (e) => {
@@ -38,11 +37,9 @@ const Profile = ({ userId }) => {
     setUpdateUser({
       [e.target.name]: e.target.value
     });
-    // console.log(e.target.name)
-    // console.log(e.target.value)
   }
 
-  return (
+  return currentUser && (
     <div className="p-20">
       <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit}>
         <div className="space-y-8 divide-y divide-gray-200">
@@ -154,7 +151,7 @@ const Profile = ({ userId }) => {
                   htmlFor="pastRun"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Past Runs: {currentUser.pastRuns}
+                  {/* Past Runs: {currentUser.pastRuns} */}
                 </label>
                 <div className="mt-1"></div>
               </div>
