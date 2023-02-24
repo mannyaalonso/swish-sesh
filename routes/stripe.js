@@ -25,7 +25,8 @@ router.post("/create-checkout-session", async (req, res) => {
 // Create order function
 
 const createOrder = async (customer, data) => {
-  console.log(customer, data)
+  // console.log(customer, data)
+  // console.log("Order Fulfilled")
   // const Items = JSON.parse(customer.metadata.cart)
 
   // const products = Items.map((item) => {
@@ -58,7 +59,7 @@ const createOrder = async (customer, data) => {
 
 router.post(
   "/webhook",
-  express.json({ type: "application/json" }),
+  express.raw({ type: "application/json" }),
   async (req, res) => {
     let data
     let eventType
@@ -78,6 +79,7 @@ router.post(
           signature,
           webhookSecret
         )
+        console.log(event)
       } catch (err) {
         console.log(`⚠️  Webhook signature verification failed:  ${err}`)
         return res.sendStatus(400)
@@ -93,13 +95,15 @@ router.post(
     }
 
     // Handle the checkout.session.completed event
-    if (eventType === "checkout.session.completed") {
+    console.log(eventType)
+    if (eventType === "payment_intent.succeeded") {
       stripe.customers
         .retrieve(data.customer)
         .then(async (customer) => {
           try {
             // CREATE ORDER
             createOrder(customer, data)
+            console.log("Fulfilled order")
           } catch (err) {
             console.log(typeof createOrder)
             console.log(err)
