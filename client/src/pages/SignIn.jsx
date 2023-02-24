@@ -48,10 +48,10 @@ const SignIn = ({ setUser }) => {
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <FaBasketballBall className="mx-auto h-12 w-auto text-indigo-600" />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            <FaBasketballBall className="mx-auto h-12 w-auto text-indigo-500" />
+            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-slate-100">
               Sign in to register for&nbsp;
-              <span className="text-indigo-600 hover:text-indigo-500">
+              <span className="text-indigo-500 hover:text-indigo-400">
                 Swish Sesh
               </span>
             </h2>
