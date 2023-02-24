@@ -1,79 +1,68 @@
 const { json } = require("express")
 const express = require("express")
 const Stripe = require("stripe")
-//const { Order } = require("../models/Order")
+const { Run, User } = require("../models")
 
 require("dotenv").config()
 
 const stripe = Stripe(process.env.STRIPE_KEY)
 const router = express.Router()
 
-router.post("/create-checkout-session",  
-  async (req, res) => {
-  console.log(req.body)
+router.post("/create-checkout-session", async (req, res) => {
+	const { userId, runId } = req.body
+
+	const customer = await stripe.customers.create({
+		metadata: {
+			userId: userId,
+			runId: runId,
+		},
+	})
+
 	const session = await stripe.checkout.sessions.create({
 		line_items: [
 			{
-				price: "price_1MdivGHJzJjGpnF2Wt5Xh4sa",
+				price: "price_1MerW5Ecp2ml8xSx6FTNEwqx",
 				quantity: 1,
 			},
 		],
 		mode: "payment",
 		success_url: `${process.env.DOMAIN_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-		cancel_url: `${process.env.DOMAIN_URL}?canceled=true`
+		cancel_url: `${process.env.DOMAIN_URL}?canceled=true`,
+		customer: customer.id,
 	})
 	res.redirect(303, session.url)
 })
 
 // Create order function
 
-const createOrder = async (customer, data) => {
-  //use body that gets sent to webhook to push players into specific run
+const fullfillOrder = async (customerId, runId) => {
+	//use body that gets sent to webhook to push players into specific run
+	await Run.findByIdAndUpdate(
+		runId,
+		{ $push: { players: customerId } },
+		{ new: true }
+	)
 
-
-	// console.log(customer, data)
-	// console.log("Order Fulfilled")
-	// const Items = JSON.parse(customer.metadata.cart)
-	// const products = Items.map((item) => {
-	//   return {
-	//     productId: item.id,
-	//     quantity: item.cartQuantity,
-	//   }
-	// })
-	// const newOrder = new Order({
-	//   userId: customer.metadata.userId,
-	//   customerId: data.customer,
-	//   paymentIntentId: data.payment_intent,
-	//   products,
-	//   subtotal: data.amount_subtotal,
-	//   total: data.amount_total,
-	//   shipping: data.customer_details,
-	//   payment_status: data.payment_status,
-	// })
-	// try {
-	//   const savedOrder = await newOrder.save()
-	//   console.log("Processed Order:", savedOrder)
-	// } catch (err) {
-	//   console.log(err)
-	// }
+	await User.findByIdAndUpdate(
+		customerId,
+		{ $push: { pastRuns: runId } },
+		{ new: true }
+	)
 }
 
 // Stripe webhoook
-
 router.post(
 	"/webhook",
 	express.raw({ type: "application/json" }),
 	async (req, res) => {
-    console.log(req.body)
+		console.log(req.body)
 		let data
 		let eventType
 
-		// Check if webhook signing is configured.
 		let webhookSecret
 		webhookSecret = process.env.STRIPE_WEB_HOOK
 
 		if (webhookSecret) {
-			// Retrieve the event by verifying the signature using the raw body and secret.
 			let event
 			let signature = req.headers["stripe-signature"]
 
@@ -90,35 +79,27 @@ router.post(
 				)
 				return res.sendStatus(400)
 			}
-			// Extract the object from the event.
 			data = event.data.object
 			eventType = event.type
 		} else {
-			// Webhook signing is recommended, but if the secret is not configured in `config.js`,
-			// retrieve the event data directly from the request body.
 			data = req.body.data.object
 			eventType = req.body.type
 		}
-
-		// Handle the checkout.session.completed event
-		// console.log(eventType)
-		if (eventType === "charge.succeeded") {
-			stripe.customers
-			  .retrieve(data.customer)
-			  .then(async (customer) => {
-			    try {
-			      // CREATE ORDER
-			      createOrder(customer, data)
-			      console.log("Fulfilled order")
-			    } catch (err) {
-			      console.log(typeof createOrder)
-			      console.log(err)
-			    }
-			  })
-			  .catch((err) => console.log(err.message))
+		if (eventType === "checkout.session.completed") {
+			stripe.customers.retrieve(data.customer).then(async (customer) => {
+				console.log(customer)
+				try {
+					fullfillOrder(
+						customer.metadata.userId,
+						customer.metadata.runId
+					)
+				} catch (err) {
+					console.log(typeof createOrder)
+					console.log(err)
+				}
+			})
 		}
-
-		res.status(200).end()
+		res.status(200).send().end()
 	}
 )
 
