@@ -4,7 +4,7 @@ import { BsFillPersonFill } from "react-icons/bs"
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
-const RunDetails = () => {
+const RunDetails = ({ user }) => {
 	const [selectedRun, setSelectedRun] = useState({_id: ""})
 	const navigate = useNavigate()
 	let { id } = useParams()
@@ -19,13 +19,13 @@ const RunDetails = () => {
 	}
 
 	return selectedRun && (
-		<div className="px-6 lg:px-8 mt-8">
+		<div className="px-6 lg:px-8 mt-32">
 			<div className="sm:flex sm:items-center">
 				<div className="sm:flex-auto">
-					<h1 className="text-xl font-semibold text-gray-900">
+					<h1 className="text-xl font-semibold text-slate-100">
 						{selectedRun.location}
 					</h1>
-					<p className="mt-2 text-sm text-gray-700">
+					<p className="mt-2 text-sm text-slate-300">
 						{selectedRun.address}
 					</p>
 				</div>
@@ -56,19 +56,19 @@ const RunDetails = () => {
 								<tr>
 									<th
 										scope="col"
-										className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+										className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-slate-100 sm:pl-0"
 									>
 										Name
 									</th>
 									<th
 										scope="col"
-										className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+										className="px-3 py-3.5 text-left text-sm font-semibold text-slate-100"
 									>
 										Experience
 									</th>
 									<th
 										scope="col"
-										className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+										className="px-3 py-3.5 text-left text-sm font-semibold text-slate-100"
 									>
 										Number of runs
 									</th>
@@ -83,35 +83,25 @@ const RunDetails = () => {
 									</th>
 								</tr>
 							</thead>
-							<tbody className="divide-y divide-gray-200 bg-white">
+							<tbody className="divide-y divide-gray-200 bg-slate-800">
 								{selectedRun.players &&
 									selectedRun.players.map((player, index) => (
 										<tr key={index}>
 											<td className="whitespace-nowrap py-4 pl-6 pr-3 text-sm sm:pl-0">
 												<div className="flex items-center">
-													<div className="h-10 w-10 flex-shrink-0">
-														{player.picture ? (
-															<img
-																className="h-10 w-10 rounded-full"
-																src={
-																	player.picture
-																}
-																alt="img"
-															/>
-														) : (
-															<BsFillPersonFill />
-														)}
+													<div className="h-10 w-10 flex-shrink-0 flex items-center justify-center">
+														<BsFillPersonFill className="text-slate-100" size={30}/>
 													</div>
 													<div className="ml-4">
-														<div className="font-medium text-gray-900">
+														<div className="font-medium text-slate-100">
 															{player.name}
 														</div>
 														{/* <div className="text-gray-500">{selectedRun.address}</div> */}
 													</div>
 												</div>
 											</td>
-											<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-												<div className="text-gray-900">
+											<td className="whitespace-nowrap px-3 py-4 text-sm text-slate-100">
+												<div className="text-slate-100">
 													{player.experience}
 												</div>
 												{/* <div className="text-gray-500">{selectedRun.time}</div> */}

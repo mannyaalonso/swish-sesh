@@ -18,7 +18,7 @@ const Nav = () => {
 
   return (
     <>
-      <header className="bg-slate-900">
+      <header className="bg-slate-800 fixed top-0 z-50 w-full">
         <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Top">
           <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
             <div className="flex items-center">
@@ -50,7 +50,7 @@ const Nav = () => {
               )}
               <a
                 href="/profile"
-                className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-indigo-600 hover:bg-indigo-50"
+                className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-indigo-500 hover:bg-indigo-50"
               >
                 {sessionStorage.getItem("user") ? (
                   <p>My Profile</p>
