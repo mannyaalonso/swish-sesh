@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { BsFillPersonFill } from "react-icons/bs"
+import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 const RunDetails = ({ user }) => {
 	const [selectedRun, setSelectedRun] = useState({})
-
+	const navigate = useNavigate()
 	let { id } = useParams()
 
 	useEffect(() => {
@@ -18,14 +19,7 @@ const RunDetails = ({ user }) => {
 		setSelectedRun(res.data.run)
 	}
 
-  const handlePost = async () => {
-    await axios.post('/api/stripe/create-checkout-session', {
-      userId: sessionStorage.getItem("user"),
-      runId: selectedRun._id
-    })
-  }
-
-	return (
+	return selectedRun && (
 		<div className="px-6 lg:px-8 mt-8">
 			<div className="sm:flex sm:items-center">
 				<div className="sm:flex-auto">
@@ -37,18 +31,22 @@ const RunDetails = ({ user }) => {
 					</p>
 				</div>
 				<div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+					{sessionStorage.getItem('user') ?
 					<form action='/api/stripe/create-checkout-session' method="POST">
-					
-      
 						<input type="hidden" name="runId" value={selectedRun._id}/>
 						<input type="hidden" name="userId" value={sessionStorage.getItem("user")}/>
 						<button
-							
 							className="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Register
 						</button>
-					</form>
+					</form> : 
+					<button
+					onClick={() => navigate('/profile')}
+							className="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+						>
+							Sign In to Register
+						</button>}
 				</div>
 			</div>
 			<div className="mt-8 flow-root">
@@ -88,8 +86,8 @@ const RunDetails = ({ user }) => {
 							</thead>
 							<tbody className="divide-y divide-gray-200 bg-white">
 								{selectedRun.players &&
-									selectedRun.players.map((player) => (
-										<tr key={player._id}>
+									selectedRun.players.map((player, index) => (
+										<tr key={index}>
 											<td className="whitespace-nowrap py-4 pl-6 pr-3 text-sm sm:pl-0">
 												<div className="flex items-center">
 													<div className="h-10 w-10 flex-shrink-0">
@@ -99,7 +97,7 @@ const RunDetails = ({ user }) => {
 																src={
 																	player.picture
 																}
-																alt="profile picture of player"
+																alt="img"
 															/>
 														) : (
 															<BsFillPersonFill />

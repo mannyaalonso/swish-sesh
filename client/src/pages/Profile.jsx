@@ -14,7 +14,7 @@ const Profile = ({ userId }) => {
 
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/${userId}`);
+      const res = await axios.get(`/api/user/${sessionStorage.getItem('user')}`);
       setCurrentUser(res.data.user);
     } catch (err) {
       console.log(err);
