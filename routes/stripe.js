@@ -33,8 +33,6 @@ router.post("/create-checkout-session", async (req, res) => {
 	res.redirect(303, session.url)
 })
 
-// Create order function
-
 const fullfillOrder = async (customerId, runId) => {
 	//use body that gets sent to webhook to push players into specific run
 	await Run.findByIdAndUpdate(
@@ -87,7 +85,6 @@ router.post(
 		}
 		if (eventType === "checkout.session.completed") {
 			stripe.customers.retrieve(data.customer).then(async (customer) => {
-				console.log(customer)
 				try {
 					fullfillOrder(
 						customer.metadata.userId,

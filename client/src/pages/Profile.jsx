@@ -4,12 +4,12 @@ import { useEffect, useState, } from 'react'
 
 const Profile = ({ userId }) => {
   const [currentUser, setCurrentUser] = useState('');
-  const [updateUser, setUpdateUser] = useState({
-    experience: `${currentUser.experience}`
-  });
-  const [editing, setEditing] = useState(false);
 
-  console.log(updateUser);
+  const [updateUser, setUpdateUser] = useState({
+    experience: `Recreational & Friendly`
+  });
+
+  const [editing, setEditing] = useState(false);
 
   const getUser = async (e) => {
     try {
@@ -29,6 +29,7 @@ const Profile = ({ userId }) => {
     const updateExpPackage = {
       experience: updateUser,
     }
+
     await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
     getUser()
   };
@@ -139,7 +140,7 @@ const Profile = ({ userId }) => {
                     </select>
                     <button
                       type="submit"
-                      className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-2"
                     >
                       Update
                     </button>
