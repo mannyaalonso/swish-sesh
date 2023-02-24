@@ -20,7 +20,7 @@ router.post("/create-checkout-session",
 		],
 		mode: "payment",
 		success_url: `${process.env.DOMAIN_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-		cancel_url: `${process.env.DOMAIN_URL}?canceled=true`,
+		cancel_url: `${process.env.DOMAIN_URL}?canceled=true`
 	})
 	res.redirect(303, session.url)
 })
@@ -28,6 +28,9 @@ router.post("/create-checkout-session",
 // Create order function
 
 const createOrder = async (customer, data) => {
+  //use body that gets sent to webhook to push players into specific run
+
+
 	// console.log(customer, data)
 	// console.log("Order Fulfilled")
 	// const Items = JSON.parse(customer.metadata.cart)
@@ -61,6 +64,7 @@ router.post(
 	"/webhook",
 	express.raw({ type: "application/json" }),
 	async (req, res) => {
+    console.log(req.body)
 		let data
 		let eventType
 
