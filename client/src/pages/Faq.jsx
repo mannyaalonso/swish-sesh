@@ -28,7 +28,7 @@ const Faq = () => {
 
   return (
     <div>
-      <div className="bg-slate-900 mt-24">
+      <div className="bg-slate-900 lg:mt-24 mt-24">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-40 lg:px-8">
           <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
             <h2 className="text-2xl font-bold leading-10 tracking-tight text-slate-100">
