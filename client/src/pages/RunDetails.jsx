@@ -61,7 +61,7 @@ const RunDetails = ({ user }) => {
                       scope="col"
                       className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-slate-100 sm:pl-0"
                     >
-                      Name
+                      Player Name
                     </th>
                     <th
                       scope="col"
