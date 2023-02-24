@@ -4,8 +4,8 @@ import { BsFillPersonFill } from "react-icons/bs"
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
-const RunDetails = ({ user }) => {
-	const [selectedRun, setSelectedRun] = useState({})
+const RunDetails = () => {
+	const [selectedRun, setSelectedRun] = useState({_id: ""})
 	const navigate = useNavigate()
 	let { id } = useParams()
 
@@ -15,7 +15,6 @@ const RunDetails = ({ user }) => {
 
 	const getRun = async () => {
 		const res = await axios.get(`/api/run/${id}`)
-		console.log(res.data.run)
 		setSelectedRun(res.data.run)
 	}
 
