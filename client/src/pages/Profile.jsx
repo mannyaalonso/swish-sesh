@@ -41,15 +41,15 @@ const Profile = ({ userId }) => {
   }
 
   return currentUser && (
-    <div className="p-20">
+    <div className="p-20 mt-24">
       <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit}>
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <h3 className="text-lg font-medium leading-6 text-slate-100">
                 Profile
               </h3>
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-slate-300">
                 You can edit your experience here.
               </p>
             </div>
@@ -58,7 +58,7 @@ const Profile = ({ userId }) => {
               <div className="sm:col-span-6">
                 <label
                   htmlFor="photo"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-slate-100"
                 >
                   Photo
                 </label>
@@ -73,7 +73,7 @@ const Profile = ({ userId }) => {
 
           <div className="pt-8">
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <h3 className="text-lg font-medium leading-6 text-slate-100">
                 Personal Information
               </h3>
             </div>
@@ -81,7 +81,7 @@ const Profile = ({ userId }) => {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="first-name"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-slate-300"
                 >
                   Full Name: {currentUser.name}
                 </label>
@@ -90,7 +90,7 @@ const Profile = ({ userId }) => {
               <div className="sm:col-span-4">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-slate-300"
                 >
                   Email address: {currentUser.email}
                 </label>
@@ -100,7 +100,7 @@ const Profile = ({ userId }) => {
               <div className="sm:col-span-4">
                 <label
                   htmlFor="experience"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-slate-300"
                 >
                   Experience: {currentUser.experience}
                 </label>
@@ -118,7 +118,7 @@ const Profile = ({ userId }) => {
                 <div className="sm:col-span-4">
                   <label
                     htmlFor="updateExp"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-slate-300"
                   >
                     Experience
                   </label>
