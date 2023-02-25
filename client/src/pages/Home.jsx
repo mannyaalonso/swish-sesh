@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Footer from "../components/Footer"
 import axios from "axios"
 
 const Home = ({ user }) => {
@@ -16,7 +17,8 @@ const Home = ({ user }) => {
   }
 
   return (
-    runs && (
+    <>
+      runs && (
       <div className="px-6 lg:px-8 bg-slate-900 lg:mt-32 mt-44">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
@@ -119,7 +121,11 @@ const Home = ({ user }) => {
           </div>
         </div>
       </div>
-    )
+      <footer>
+        <Footer />
+      </footer>
+      )
+    </>
   )
 }
 export default Home
