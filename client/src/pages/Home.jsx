@@ -12,7 +12,19 @@ const Home = ({ user }) => {
 
   const getRuns = async () => {
     const res = await axios.get("/api/runs")
+    await res.data.runs.sort((a,b) => new Date(a.date) - new Date(b.date))
     setRuns(res.data.runs)
+  }
+
+  const toggleSortDate = () => {
+    const newList = [...runs]
+    if (new Date(newList[0].date) > new Date(newList[1].date)) {
+      newList.sort((a,b) => new Date(a.date) - new Date(b.date))
+      setRuns(newList)
+    } else {
+      newList.sort((a,b) => new Date(b.date) - new Date(a.date))
+      setRuns(newList)
+    }
   }
 
   return (
@@ -44,13 +56,13 @@ const Home = ({ user }) => {
                       scope="col"
                       className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-slate-100 sm:pl-0"
                     >
-                      Location
+                      <button>Location</button>
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-slate-100"
                     >
-                      Date/Time
+                      <button onClick={toggleSortDate}>Date/Time</button>
                     </th>
                     <th
                       scope="col"
