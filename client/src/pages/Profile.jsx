@@ -2,9 +2,7 @@ import axios from 'axios'
 import { useEffect, useState, } from 'react'
 
 
-const Profile = (
-  { userId }
-) => {
+const Profile = ({ userId }) => {
   const [currentUser, setCurrentUser] = useState('');
 
   const [updateUser, setUpdateUser] = useState({
@@ -15,7 +13,7 @@ const Profile = (
 
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/${userId}`);
+      const res = await axios.get(`/api/user/${sessionStorage.getItem('user')}`);
       setCurrentUser(res.data.user);
     } catch (err) {
       console.log(err);
@@ -32,7 +30,7 @@ const Profile = (
       experience: updateUser,
     }
 
-    await axios.put(`/api/user/63f8c6dfea869a0abaf07e81`, updateExpPackage.experience)
+    await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
     getUser()
     setEditing(false)
   };
@@ -159,7 +157,6 @@ const Profile = (
                   {currentUser.pastRuns.location}
                 </label>
                 <div className="mt-1"></div>
-
               </div>
             </div>
           </div>
