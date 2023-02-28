@@ -32,9 +32,6 @@ function App() {
           <Route path="/profile" element={<SignIn setUser={setUser} />} /> }
         </Routes>
       </main>
-      <footer>
-        <Footer />
-      </footer>
     </>
   )
 }
