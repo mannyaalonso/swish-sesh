@@ -67,6 +67,7 @@ const Home = ({ user }) => {
 
 	return (
 		runs && (
+			<>
 			<div className="px-6 lg:px-8 bg-slate-900 lg:mt-32 mt-44">
 				<div className="sm:flex sm:items-center">
 					<div className="sm:flex-auto">
@@ -194,6 +195,10 @@ const Home = ({ user }) => {
 					</div>
 				</div>
 			</div>
+			<footer>
+        <Footer />
+      </footer>
+			</>
 		)
 	)
 
