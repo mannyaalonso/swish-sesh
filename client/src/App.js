@@ -28,7 +28,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/run/:id" element={<RunDetails />} />
           {user === null ?
-            <Route path="/profile" element={<Profile />} /> :
+            <Route path="/profile2" element={<Profile />} /> :
             <Route path="/profile" element={<SignIn setUser={setUser} />} />
           }
         </Routes>
