@@ -152,7 +152,7 @@ const Profile = ({ userId }) => {
                 <div className="sm:col-span-4 mt-8">
                   <label
                     htmlFor="pastRun"
-                    className="block text-sm font-medium text-slate-300"
+                    className="block text-md font-medium text-slate-300"
                   >
                     <span className="text-indigo-400">Current Runs:</span>
                     <div className="mt-8 flow-root">
@@ -256,9 +256,9 @@ const Profile = ({ userId }) => {
                 <div className="sm:col-span-4 mt-8">
                   <label
                     htmlFor="pastRun"
-                    className="block text-sm font-medium text-slate-300"
+                    className="block text-md font-medium text-slate-300"
                   >
-                    <span className="text-indigo-400">Past Runs</span>
+                    <span className="text-indigo-400">Past Runs:</span>
                     {/* {currentUser.pastRuns.location} */}
                     <div className="mt-8 flow-root ">
                       <div className="-my-2 -mx-6 overflow-x-auto lg:-mx-8">
