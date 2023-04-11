@@ -11,13 +11,24 @@ const router = express.Router()
 router.post("/create-checkout-session", async (req, res) => {
 	const { userId, runId } = req.body
 
-	const customer = await stripe.customers.create({
-		metadata: {
-			userId: userId,
-			runId: runId,
-		},
-	})
+	const customers = await stripe.customers.list()
+	const customer = customers.data.find((customer) => customer.metadata.userId === userId)
+	let newCustomer
 
+	 if (customer) {
+		newCustomer = await stripe.customers.update(
+			customer.id,
+			{metadata: {runId: runId}}
+		)
+	 } else {
+		newCustomer = await stripe.customers.create({
+      metadata: {
+        userId: userId,
+        runId: runId,
+      },
+    })
+	}
+	
 	const session = await stripe.checkout.sessions.create({
 		line_items: [
 			{
@@ -28,7 +39,7 @@ router.post("/create-checkout-session", async (req, res) => {
 		mode: "payment",
 		success_url: `${process.env.DOMAIN_URL}/run/${runId}`,
 		cancel_url: `${process.env.DOMAIN_URL}?canceled=true`,
-		customer: customer.id,
+		customer: newCustomer.id,
 	})
 	res.redirect(303, session.url)
 })
@@ -84,6 +95,7 @@ router.post(
 			eventType = req.body.type
 		}
 		if (eventType === "checkout.session.completed") {
+			
 			stripe.customers.retrieve(data.customer).then(async (customer) => {
 				try {
 					fullfillOrder(
