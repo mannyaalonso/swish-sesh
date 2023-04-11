@@ -4,6 +4,7 @@ import Registration from "./pages/Registration"
 import RunDetails from "./pages/RunDetails"
 import Footer from "./components/Footer"
 import Profile from "./pages/Profile"
+import Contact from "./pages/Contact"
 import SignIn from "./pages/SignIn"
 import Nav from "./components/Nav"
 import About from "./pages/About"
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/run/:id" element={<RunDetails />} />

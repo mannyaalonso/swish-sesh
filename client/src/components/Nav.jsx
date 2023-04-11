@@ -8,6 +8,7 @@ const Nav = () => {
     { name: "Home", href: "/" },
     // { name: "", href: "#" },
     { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
     { name: "FAQ", href: "/faq" },
   ]
 
