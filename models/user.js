@@ -10,7 +10,6 @@ const userSchema = new Schema(
         experience: { type: String, },
         pastRuns: { type: [Schema.Types.ObjectId], ref: 'Runs' },
         hasPayment: { type: Boolean, required: true },
-        stripeId: { type: String },
     },
     { timestamps: true },
 )
