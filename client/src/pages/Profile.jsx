@@ -3,7 +3,9 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Footer from "../components/Footer"
 
-const Profile = ({ userId }) => {
+const Profile = (
+  // { userId }
+) => {
   let navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState("")
 
@@ -17,7 +19,8 @@ const Profile = ({ userId }) => {
 
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/${sessionStorage.getItem("user")}`)
+      // const res = await axios.get(`/api/user/${sessionStorage.getItem("user")}`)
+      const res = await axios.get(`/api/user/63f8c6dfea869a0abaf07e81`)
       setCurrentUser(res.data.user)
     } catch (err) {
       console.log(err)
@@ -34,7 +37,8 @@ const Profile = ({ userId }) => {
       experience: updateUser,
     }
 
-    await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
+    // await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
+    await axios.put(`/api/user/63f8c6dfea869a0abaf07e81`, updateExpPackage.experience)
     getUser()
     setEditing(false)
   }
@@ -143,11 +147,47 @@ const Profile = ({ userId }) => {
                           setEditing(!editing)
                         }}
                       >
-                        Edit 
+                        Edit
                       </button>
                     </div>
                   </div>
                 </div>
+
+                {editing && (
+                  <div className="sm:col-span-4">
+                    <label
+                      htmlFor="updateExp"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Experience
+                    </label>
+                    <div className="mt-1">
+                      <select
+                        id="updateExp"
+                        name="experience"
+                        type="text"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        onChange={handleChange}
+                        // value={updateUser}
+                        value={updateUser.experience}
+                      >
+                        <option value="Recreational & Friendly">
+                          Recreational & Friendly
+                        </option>
+                        <option value="Competitive">Competitive</option>
+                        <option value="Professional">Professional</option>
+                        <option value="Elite">Elite</option>
+                      </select>
+                      <button
+                        type="submit"
+                        className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>)}
+
+
 
                 <div className="sm:col-span-4 mt-8">
                   <label
@@ -223,8 +263,7 @@ const Profile = ({ userId }) => {
                                     <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
                                       {run.isFull && "Full"}
                                       {!run.isFull &&
-                                        `${
-                                          30 - run.players.length
+                                        `${30 - run.players.length
                                         } spaces available`}
                                     </span>
                                   </td>
@@ -328,8 +367,7 @@ const Profile = ({ userId }) => {
                                     <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
                                       {run.isFull && "Full"}
                                       {!run.isFull &&
-                                        `${
-                                          30 - run.players.length
+                                        `${30 - run.players.length
                                         } spaces available`}
                                     </span>
                                   </td>
