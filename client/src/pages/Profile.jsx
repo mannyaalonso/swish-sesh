@@ -143,7 +143,7 @@ const Profile = ({ userId }) => {
                           setEditing(!editing)
                         }}
                       >
-                        Edit
+                        Edit 
                       </button>
                     </div>
                   </div>
