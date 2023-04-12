@@ -3,9 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Footer from "../components/Footer"
 
-const Profile = (
-  // { userId }
-) => {
+const Profile = ({ userId }) => {
   let navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState("")
 
@@ -19,8 +17,8 @@ const Profile = (
 
   const getUser = async (e) => {
     try {
-      // const res = await axios.get(`/api/user/${sessionStorage.getItem("user")}`)
-      const res = await axios.get(`/api/user/63f8c6dfea869a0abaf07e81`)
+      const res = await axios.get(`/api/user/${sessionStorage.getItem("user")}`)
+      // const res = await axios.get(`/api/user/63f3f2c0f1105e076a869468`)
       setCurrentUser(res.data.user)
     } catch (err) {
       console.log(err)
@@ -37,8 +35,8 @@ const Profile = (
       experience: updateUser,
     }
 
-    // await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
-    await axios.put(`/api/user/63f8c6dfea869a0abaf07e81`, updateExpPackage.experience)
+    await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
+    // await axios.put(`/api/user/63f3f2c0f1105e076a869468`, updateExpPackage.experience)
     getUser()
     setEditing(false)
   }
@@ -51,7 +49,8 @@ const Profile = (
 
   const getRuns = async () => {
     try {
-      const res = await axios.get("/api/runs")
+      const res = await axios.get(`/api/user/runs/${userId}`)
+      // const res = await axios.get(`/api/user/runs/63f3f2c0f1105e076a869468`)
       const pastRuns = res.data.runs.filter((run) => {
         return new Date(run.date) < new Date()
       })
@@ -63,6 +62,7 @@ const Profile = (
       console.log(err)
     }
   }
+
 
   useEffect(() => {
     getRuns()
