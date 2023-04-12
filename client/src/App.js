@@ -13,6 +13,7 @@ import Home from "./pages/Home"
 import Faq from "./pages/Faq"
 
 function App() {
+  
   const [user, setUser] = useState("")
 
   return (
