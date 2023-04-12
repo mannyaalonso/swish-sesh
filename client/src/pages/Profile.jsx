@@ -3,7 +3,9 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Footer from "../components/Footer"
 
-const Profile = ({ userId }) => {
+const Profile = (
+  // { userId }
+) => {
   let navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState("")
 
@@ -17,8 +19,8 @@ const Profile = ({ userId }) => {
 
   const getUser = async (e) => {
     try {
-      const res = await axios.get(`/api/user/${sessionStorage.getItem("user")}`)
-      // const res = await axios.get(`/api/user/63f8c6dfea869a0abaf07e81`)
+      // const res = await axios.get(`/api/user/${sessionStorage.getItem("user")}`)
+      const res = await axios.get(`/api/user/63f8c6dfea869a0abaf07e81`)
       setCurrentUser(res.data.user)
     } catch (err) {
       console.log(err)
@@ -35,8 +37,8 @@ const Profile = ({ userId }) => {
       experience: updateUser,
     }
 
-    await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
-    // await axios.put(`/api/user/63f8c6dfea869a0abaf07e81`, updateExpPackage.experience)
+    // await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
+    await axios.put(`/api/user/63f8c6dfea869a0abaf07e81`, updateExpPackage.experience)
     getUser()
     setEditing(false)
   }
