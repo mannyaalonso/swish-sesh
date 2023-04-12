@@ -18,7 +18,7 @@ const Profile = ({ userId }) => {
   const getUser = async (e) => {
     try {
       const res = await axios.get(`/api/user/${sessionStorage.getItem("user")}`)
-      // const res = await axios.get(`/api/user/63f8c6dfea869a0abaf07e81`)
+      // const res = await axios.get(`/api/user/63f3f2c0f1105e076a869468`)
       setCurrentUser(res.data.user)
     } catch (err) {
       console.log(err)
@@ -36,7 +36,7 @@ const Profile = ({ userId }) => {
     }
 
     await axios.put(`/api/user/${userId}`, updateExpPackage.experience)
-    // await axios.put(`/api/user/63f8c6dfea869a0abaf07e81`, updateExpPackage.experience)
+    // await axios.put(`/api/user/63f3f2c0f1105e076a869468`, updateExpPackage.experience)
     getUser()
     setEditing(false)
   }
@@ -49,7 +49,8 @@ const Profile = ({ userId }) => {
 
   const getRuns = async () => {
     try {
-      const res = await axios.get("/api/runs")
+      const res = await axios.get(`/api/user/runs/${userId}`)
+      // const res = await axios.get(`/api/user/runs/63f3f2c0f1105e076a869468`)
       const pastRuns = res.data.runs.filter((run) => {
         return new Date(run.date) < new Date()
       })
@@ -61,6 +62,7 @@ const Profile = ({ userId }) => {
       console.log(err)
     }
   }
+
 
   useEffect(() => {
     getRuns()

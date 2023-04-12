@@ -18,4 +18,6 @@ router.delete('/run/:id', controllers.deleteRun)
 router.post("/login", controllers.loginUser)
 router.get("/runs", controllers.getRuns)
 
+router.get('/user/runs/:id', controllers.getUserRuns)
+
 module.exports = router;
