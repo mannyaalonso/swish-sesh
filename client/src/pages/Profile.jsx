@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Footer from "../components/Footer"
-
+//Need to add sorting with arrow
 const Profile = ({ userId }) => {
   let navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState("")
