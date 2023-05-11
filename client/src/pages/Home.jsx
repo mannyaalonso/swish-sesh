@@ -2,9 +2,16 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Footer from "../components/Footer"
 import axios from "axios"
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai"
 
 const Home = ({ user }) => {
 	const [runs, setRuns] = useState([])
+	const [arrowDirection, setArrowDirection] = useState({
+		location: true,
+		date: true,
+		spots: true,
+		host: true
+	})
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -28,7 +35,7 @@ const Home = ({ user }) => {
 		}
 	}
 
-	const toggleSortSpotsAvailbale = () => {
+	const toggleSortSpotsAvailable = () => {
 		const newList = [...runs]
 		if (newList[0].players.length > newList[1].players.length) {
 			newList.sort((a, b) => a.players.length - b.players.length)
@@ -44,10 +51,12 @@ const Home = ({ user }) => {
 		if (newList[0].location.toUpperCase() > newList[1].location.toUpperCase()) {
 			newList.sort((a,b) => a.location.localeCompare(b.location))
 			setRuns(newList)
+			setArrowDirection({...arrowDirection, location: true})
       console.log(runs)
 		} else {
 			newList.sort((a,b) => b.location.localeCompare(a.location))
 			setRuns(newList)
+			setArrowDirection({...arrowDirection, location: false})
       console.log(runs)
 		}
 	}
@@ -95,9 +104,11 @@ const Home = ({ user }) => {
 									<tr>
 										<th
 											scope="col"
-											className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-slate-100 sm:pl-0"
+											className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-slate-100 sm:pl-0 flex items-center gap-1"
 										>
 											<button onClick={toggleSortLocation}>Location</button>
+											{ arrowDirection.location ? <AiFillCaretDown /> : <AiFillCaretUp />}
+											
 										</th>
 										<th
 											scope="col"
@@ -106,6 +117,8 @@ const Home = ({ user }) => {
 											<button onClick={toggleSortDate}>
 												Date/Time
 											</button>
+											{ arrowDirection.date ? <AiFillCaretDown /> : <AiFillCaretUp />}
+
 										</th>
 										<th
 											scope="col"
@@ -113,7 +126,7 @@ const Home = ({ user }) => {
 										>
 											<button
 												onClick={
-													toggleSortSpotsAvailbale
+													toggleSortSpotsAvailable
 												}
 											>
 												Spots
