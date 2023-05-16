@@ -148,7 +148,7 @@ const Home = ({ user }) => {
 												scope="col"
 												className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-slate-100 sm:pl-0"
 											>
-												<button onClick={toggleSortLocation}>
+												<button onClick={toggleSortLocation} className="flex items-center gap-1">
 													Location
 													{arrowDirection.location ? (
 														<AiFillCaretDown />
@@ -161,7 +161,7 @@ const Home = ({ user }) => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-slate-100"
 											>
-												<button onClick={toggleSortDate}>
+												<button onClick={toggleSortDate} className="flex items-center gap-1">
 													Date/Time
 													{arrowDirection.date ? (
 														<AiFillCaretDown />
@@ -174,7 +174,7 @@ const Home = ({ user }) => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-slate-100"
 											>
-												<button onClick={toggleSortSpotsAvailable}>
+												<button onClick={toggleSortSpotsAvailable} className="flex items-center gap-1">
 													Spots
 													{arrowDirection.spots ? (
 														<AiFillCaretDown />
@@ -187,7 +187,7 @@ const Home = ({ user }) => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-slate-100"
 											>
-												<button onClick={toggleSortHost}>
+												<button onClick={toggleSortHost} className="flex items-center gap-1">
 													Host{" "}
 													{arrowDirection.host ? (
 														<AiFillCaretDown />
